@@ -424,12 +424,21 @@ PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
 
-# Wifi
+# Wi-Fi
 PRODUCT_PACKAGES += \
-    android.hardware.tetheroffload.config@1.0.vendor \
-    android.hardware.tetheroffload.control@1.1.vendor \
-    android.hardware.wifi.hostapd@1.3.vendor \
-    android.hardware.wifi.supplicant@1.4.vendor
+    wpa_supplicant \
+    hostapd \
+    libwifi-hal-mt66xx \
+    android.hardware.wifi@1.0-service-lazy
+
+PRODUCT_PACKAGES += \
+    android.hardware.tetheroffload.config@1.0.vendor:64 \
+    android.hardware.tetheroffload.control@1.0.vendor:64 \
+    android.hardware.tetheroffload.control@1.1.vendor:64
+
+PRODUCT_PACKAGES += \
+    libkeystore-engine-wifi-hidl:64 \
+    libkeystore-wifi-hidl:64
 
 # USB
 PRODUCT_PACKAGES += \
