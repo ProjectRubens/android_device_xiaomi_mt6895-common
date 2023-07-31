@@ -428,7 +428,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     wpa_supplicant \
     hostapd \
-    libwifi-hal-mt66xx \
     android.hardware.wifi@1.0-service-lazy
 
 PRODUCT_PACKAGES += \
@@ -439,6 +438,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libkeystore-engine-wifi-hidl:64 \
     libkeystore-wifi-hidl:64
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wifi/vendor_hals/vendor_hals.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/vendor_hals/vendor_hals.xml
 
 # USB
 PRODUCT_PACKAGES += \
