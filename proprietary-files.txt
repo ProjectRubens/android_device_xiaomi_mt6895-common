@@ -17,6 +17,7 @@ vendor/lib64/hw/audio.r_submix.mediatek.so
 vendor/lib64/hw/sound_trigger.primary.default.so
 vendor/lib64/libcvsd_mtk.so
 vendor/lib64/libmsbc_mtk.so
+vendor/lib64/libcodec2_vpp_dolby_plugin.so
 vendor/lib64/libspeech_enh_lib.so
 vendor/lib64/libspeechparser_vendor.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
@@ -1104,6 +1105,7 @@ system_ext/lib64/libvcodec_capenc.so
 system_ext/lib64/libvt_avsync.so
 system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so
 system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so
 
 # Media (Codec2)
 vendor/bin/hw/android.hardware.media.c2@1.2-mediatek
@@ -1138,6 +1140,7 @@ vendor/lib64/libcodec2_vpp_rs_plugin.so
 vendor/lib64/libformatter.so
 vendor/lib64/libsfplugin_ccodec_utils.so
 vendor/lib64/libstagefright_bufferpool@2.0.1.so
+vendor/lib64/vendor.mediatek.hardware.pq@2.15.so
 
 # Media (OMX)
 etc/seccomp_policy/mediacodec.policy
