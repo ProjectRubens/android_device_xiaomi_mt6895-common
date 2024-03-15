@@ -198,10 +198,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-miuicamera.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-miuicamera.xml
 
-# MtkInCallService
-PRODUCT_PACKAGES += \
-    MtkInCallService
-
 # MTK plpath utils
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilts/mtk_plpath_utils:$(TARGET_COPY_OUT_SYSTEM)/bin/mtk_plpath_utils \
@@ -214,6 +210,7 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss-V1-ndk_platform.vendor:64 \
     android.hardware.memtrack-V1-ndk_platform.vendor:64 \
     android.hardware.power-V2-ndk_platform.vendor:64 \
+    android.hardware.security.rkp-V1-ndk.vendor \
     android.hardware.security.keymint-V1-ndk_platform.vendor:64 \
     android.hardware.security.sharedsecret-V1-ndk_platform.vendor:64 \
     android.hardware.security.secureclock-V1-ndk_platform.vendor:64 \
@@ -357,14 +354,16 @@ PRODUCT_COPY_FILES += \
 # Sensor
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
-    android.hardware.sensors@2.1.vendor \
+    android.frameworks.sensorservice@1.0.vendor \
+    android.hardware.sensors@2.1.vendor
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    $(LOCAL_PATH) \
+   hardware/mediatek 
 
 # Sysconfig
 PRODUCT_COPY_FILES += \
@@ -380,8 +379,10 @@ PRODUCT_PACKAGES += \
     vndservicemanager
 
 # VNDK
-PRODUCT_PACKAGES += \
-    libutils-v32
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-core/libbinder.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libbinder-v32.so \
+    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so \
+    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
 
 # Wifi
 PRODUCT_PACKAGES += \
