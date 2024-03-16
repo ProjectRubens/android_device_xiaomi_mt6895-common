@@ -181,8 +181,30 @@ PRODUCT_BOOT_JARS += \
     mediatek-telephony-base \
     mediatek-telephony-common
 
+PRODUCT_COPY_FILES += \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework//mediatek-common.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-common.jar \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-framework.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-framework.jar \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-ims-base.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-ims-base.jar \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-ims-common.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-ims-common.jar \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-ims-extension-plugin.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-ims-extension-plugin.jar \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-telecom-common.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-telecom-common.jar \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-telephony-base.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-telephony-base.jar \
+    vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-telephony-common.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-telephony-common.jar
+    
+# Shims
 PRODUCT_PACKAGES += \
-    libshim_vtservice
+    libshim_vtservice \
+    libshim_libstagefright \
+    libshim_libcameraservice \
+    libshim_libkeymaster4
+
+TARGET_LD_SHIM_LIBS := \
+    /system/lib/libstagefright.so|libshim_libstagefright.so \
+    /system/lib/libkeymaster4.so|libshim_libkeymaster4.so \
+    /system/lib/libcameraservice.so|libshim_libcameraservice.so \
+    /system/lib64/libstagefright.so|libshim_libstagefright.so \
+    /system/lib64/libkeymaster4.so|libshim_libkeymaster4.so \
+    /system/lib64/libcameraservice.so|libshim_libcameraservice.so \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
@@ -356,7 +378,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
     android.frameworks.sensorservice@1.0.vendor \
-    android.hardware.sensors@2.1.vendor
+    android.hardware.sensors@2.1.vendor \
+    android.frameworks.sensorservice@1.0
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 31

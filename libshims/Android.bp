@@ -1,5 +1,5 @@
 //
-// Copyright (C) 202 The LineageOS Project
+// Copyright (C) 2024 The LineageOS Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,5 +26,30 @@ cc_library_shared {
         "libaudioclient_headers",
         "libmedia_headers",
         "libmediametrics_headers",
+    ],
+}
+
+
+cc_library_shared {
+    name: "libshim_libstagefright",
+    srcs: ["libshim_libstagefright.c"],
+    shared_libs: [
+        "libstagefright",
+    ],
+}
+
+cc_library_shared {
+    name: "libshim_libcameraservice",
+    srcs: ["libshim_libcameraservice.c"],
+    shared_libs: [
+        "libcameraservice",
+    ],
+}
+
+cc_library_shared {
+    name: "libshim_libkeymaster4",
+    srcs: ["libshim_libkeymaster4.c"],
+    shared_libs: [
+        "libkeymaster4",
     ],
 }
