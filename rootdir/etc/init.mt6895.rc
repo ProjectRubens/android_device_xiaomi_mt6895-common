@@ -1,5 +1,3 @@
-import /vendor/etc/init/hw/set_permissive.rc
-
 # MTK platform .rc configure
 
 import ${ro.vendor.rc}init.connectivity.rc
@@ -7,6 +5,7 @@ import ${ro.vendor.rc}init.mt6895.usb.rc
 import /vendor/etc/init/hw/init.project.rc
 import /system_ext/etc/init/hw/init.aee.rc
 import /FWUpgradeInit.rc
+import /vendor/etc/init/hw/init.aee.rc
 import ${ro.vendor.rc}init.volte.rc
 import ${ro.vendor.rc}init.mal.rc
 import ${ro.vendor.rc}${ro.vendor.init.sensor.rc}
@@ -44,6 +43,7 @@ on init
     # setprop ro.vold.primary_physical 1
 
     mkdir /mnt/cd-rom 0000 system system
+    symlink /dev/block /dev/block/bootdevice
 
 # change lk_env permission
     chown root system /proc/lk_env
@@ -100,6 +100,10 @@ on charger
     chown system system /sys/class/leds/lcd-backlight/brightness
     chown system system /sys/class/leds/red/brightness
     chown system system /sys/class/leds/green/brightness
+    chmod 0644 /sys/class/leds/lcd-backlight/max_brightness
+    chown system system /sys/class/leds/lcd-backlight/max_brightness
+    chmod 0644 /sys/class/leds/lcd-backlight/min_brightness
+    chown system system /sys/class/leds/lcd-backlight/min_brightness
 
     start vendor.light-default
 
@@ -185,6 +189,8 @@ on post-fs
 
     # allow ccci_mdinit access ccci_dump
     chown root system /proc/ccci_dump
+    chown root radio /proc/ccci_lp_mem
+    chmod 0440 /proc/ccci_lp_mem
 
 on post-fs-data
     write /proc/bootprof "INIT:post-fs-data"
@@ -195,12 +201,12 @@ on post-fs-data
     write /proc/sys/vm/watermark_boost_factor 0
 
     # zram
-    write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/page-cluster 3
     write /proc/sys/vm/swappiness 100
-    write /sys/kernel/mm/swap/vma_ra_enabled false
+    write /sys/kernel/mm/swap/vma_ra_enabled true
 
     write /sys/block/zram0/comp_algorithm lz4
-    swapon_all /vendor/etc/fstab.mt6895
+    swapon_all /vendor/etc/fstab.enableswap
 
     # boot time fs tune
     write /sys/block/mmcblk0/queue/iostats 0
@@ -263,9 +269,13 @@ on post-fs-data
     chown root system /data/vendor/camera
     chmod 0771 /data/vendor/camera
 
+    mkdir /data/vendor/camera/offlinelog 0777 cameraserver audio
+    chmod 0666 /dev/camlog
+
     chmod 755 /mnt/vendor/nvcfg/sensor
     chmod +r /mnt/vendor/nvcfg/sensor/gyro_cali.json
     chmod +r /mnt/vendor/nvcfg/sensor/gyro_bias.json
+    chmod +r /mnt/vendor/nvcfg/sensor/ois_temp_cali.json
     #XIAOMI: Create camera directory for calibration file --end
 
     #Create Camera Dip Debug Folder
@@ -296,6 +306,20 @@ on post-fs-data
 # GPS
     chmod 0775 /vendor/xbin/MPED
     chmod 0666 /dev/gps_emi
+# smart pa start
+    mkdir /mnt/vendor/persist/factory/ 0755 system system
+    mkdir /mnt/vendor/persist/factory/audio 0755 system system
+    mkdir /data/vendor/cit/ 0755 system system
+    chown system system /sys/class/smartpa/re25_calib
+    chmod 0666 /sys/class/smartpa/re25_calib
+    chmod 666 /mnt/vendor/persist/factory/audio/aw_cali.bin
+    mkdir /mnt/vendor/persist/audio 0755 system system
+# smart pa end
+
+    # Audio add for BigData Start
+    chown system audio /dev/xlog
+    chmod 0666 /dev/xlog
+    # Audio add for BigData End
 
 # -----------------------
 # Add by MTK
@@ -998,6 +1022,11 @@ on property:vold.decrypt=trigger_shutdown_framework
 on property:vendor.audio.cit.spkcal.copy=true
     copy /data/vendor/cit/tfa9894_chk.txt /mnt/vendor/persist/audio/tfa9894_chk.txt
     chmod 666 /mnt/vendor/persist/audio/tfa9894_chk.txt
+#add M9 aw_pa
+    chmod 644 /data/vendor/cit/aw_cali.bin
+    copy /data/vendor/cit/aw_cali.bin /mnt/vendor/persist/factory/audio/aw_cali.bin
+    chmod 666 /mnt/vendor/persist/factory/audio/aw_cali.bin
+    chmod 666 /data/vendor/cit/aw_cali.bin
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -B -z \
@@ -1024,17 +1053,6 @@ on property:sys.boot_completed=1
 
     # stop bootprof
     write /proc/bootprof 0
-
-    # start gpu ondemand governor
-    exec /vendor/bin/ondemand_gpu.sh
-    start ondemand_mtk
-
-service ondemand_mtk /vendor/bin/ondemand_mtk
-    class main
-    user root
-	seclabel u:r:su:s0
-    disabled
-    oneshot
 
 # mount debugfs on user-root
 on property:sys.boot_completed=1 && property:ro.build.type=user && property:ro.debuggable="1"

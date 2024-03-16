@@ -1072,17 +1072,17 @@ vendor/lib64/libkeymint.so
 vendor/lib64/wechat.beanpod.so
 
 # MTK-IMS
-system_ext/framework/mediatek-common.jar
-system_ext/framework/mediatek-framework.jar
-system_ext/framework/mediatek-ims-base.jar
-system_ext/framework/mediatek-ims-common.jar
-system_ext/framework/mediatek-telecom-common.jar
-system_ext/framework/mediatek-telephony-base.jar
-system_ext/framework/mediatek-telephony-common.jar
-system_ext/priv-app/ImsService/ImsService.apk
-system_ext/bin/vtservice
-system_ext/etc/init/init.vtservice.rc
-system_ext/framework/mediatek-ims-extension-plugin.jar
+system_ext/framework/mediatek-common.jar:system/framework/mediatek-common.jar
+system_ext/framework/mediatek-framework.jar:system/framework/mediatek-framework.jar
+system_ext/framework/mediatek-ims-base.jar:system/framework/mediatek-ims-base.jar
+system_ext/framework/mediatek-ims-common.jar:system/framework/mediatek-ims-common.jar
+system_ext/framework/mediatek-telecom-common.jar:system/framework/mediatek-telecom-common.jar
+system_ext/framework/mediatek-telephony-base.jar:system/framework/mediatek-telephony-base.jar
+system_ext/framework/mediatek-telephony-common.jar:system/framework/mediatek-telephony-common.jar
+system_ext/priv-app/ImsService/ImsService.apk:system/priv-app/ImsService/ImsService.apk
+system_ext/bin/vtservice:bin/vtservice
+system_ext/etc/init/init.vtservice.rc:etc/init/init.vtservice.rc
+system_ext/framework/mediatek-ims-extension-plugin.jar:system/framework/mediatek-ims-extension-plugin.jar
 system_ext/lib/libmtk_vt_wrapper.so
 system_ext/lib/libmtkperf_client.so
 system_ext/lib/libsysenv_system.so
