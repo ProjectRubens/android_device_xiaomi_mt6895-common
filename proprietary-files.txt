@@ -2211,3 +2211,8 @@ vendor/etc/wifi/passpointProfile.conf
 vendor/etc/wifi/wpa_supplicant.conf
 vendor/etc/wifi/wpa_supplicant_overlay.conf
 
+
+# Just only test
+vendor/lib64/android.hardware.power-service-mediatek.so
+
+
