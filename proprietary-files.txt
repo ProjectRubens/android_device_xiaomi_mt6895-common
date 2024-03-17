@@ -52,6 +52,7 @@ vendor/lib64/libaudiosmartpamtk.so
 vendor/lib64/libaudiotoolkit_vendor.so
 vendor/lib64/libbwc.so
 vendor/lib64/libladder.so
+vendor/lib64/libmispowerop.so
 
 # Audio configs
 system/etc/audio_effects.conf
@@ -196,6 +197,7 @@ vendor/lib64/lib3a.ae.pipe.so
 vendor/lib64/lib3a.cculog.so
 vendor/lib64/libAITrackingAFMgr.so
 vendor/lib64/libBasicModule.so
+vendor/lib64/libdeflicker.so
 vendor/lib64/libJpgEncPipe.so
 vendor/lib64/libOpenCL.so
 vendor/lib64/libSQLiteModule_VER_ALL.so
