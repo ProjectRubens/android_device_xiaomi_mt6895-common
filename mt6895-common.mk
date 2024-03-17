@@ -190,6 +190,10 @@ PRODUCT_COPY_FILES += \
     vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-telecom-common.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-telecom-common.jar \
     vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-telephony-base.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-telephony-base.jar \
     vendor/xiaomi/mt6895-common/proprietary/system_ext/framework/mediatek-telephony-common.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/mediatek-telephony-common.jar
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-mediatek.xml \
+    $(LOCAL_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
     
 # Shims
 PRODUCT_PACKAGES += \
@@ -209,8 +213,7 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib64/libcameraservice.so|libshim_libcameraservice.so \
     /system_ext/lib64/libsink.so|libshim_vtservice.so
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
+
 
 # Lights
 PRODUCT_PACKAGES += \
