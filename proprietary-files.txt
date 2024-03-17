@@ -555,7 +555,7 @@ vendor/lib64/vendor.mediatek.hardware.camera.postproc@1.0.so
 vendor/lib64/vendor.mediatek.hardware.camera.security@1.0.so
 vendor/lib64/vendor.mediatek.hardware.mmagent@1.0.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.0.so
-
+vendor/lib64/libceres.so
 # Camera configs
 vendor/etc/camera/102_SummerDay.png
 vendor/etc/camera/103_Fantasy.png
@@ -763,6 +763,10 @@ vendor/etc/vintf/manifest/manifest_vendor.dolby.hardware.dms.xml
 vendor/lib/libdapparamstorage.so
 vendor/lib/libdeccfg.so
 vendor/lib/vendor.dolby.hardware.dms@2.0.so
+/vendor/lib/libdolbyplugin.so
+/vendor/lib/libdolbyeglplugin.so
+/vendor/lib64/libdolbypulgin.so
+/vendor/lib64/libdolbyeglplugin.so
 vendor/lib64/libdapparamstorage.so
 vendor/lib64/libdeccfg.so
 vendor/lib64/libdlbdsservice.so

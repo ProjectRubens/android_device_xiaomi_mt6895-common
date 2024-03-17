@@ -201,10 +201,13 @@ PRODUCT_PACKAGES += \
 TARGET_LD_SHIM_LIBS := \
     /system/lib/libstagefright.so|libshim_libstagefright.so \
     /system/lib/libkeymaster4.so|libshim_libkeymaster4.so \
+    /vendor/lib/libkeymaster4.so|libshim_libkeymaster4.so \
+    /vendor/lib64/libkeymaster4.so|libshim_libkeymaster4.so \
     /system/lib/libcameraservice.so|libshim_libcameraservice.so \
     /system/lib64/libstagefright.so|libshim_libstagefright.so \
     /system/lib64/libkeymaster4.so|libshim_libkeymaster4.so \
     /system/lib64/libcameraservice.so|libshim_libcameraservice.so \
+    /system_ext/lib64/libsink.so|libshim_vtservice.so
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
