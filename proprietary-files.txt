@@ -85,9 +85,6 @@ vendor/lib64/soundfx/libswdap.so
 vendor/lib64/soundfx/libswgamedap.so
 vendor/lib64/soundfx/libswvqe.so
 
-# Bluetooth (aptX) - from rubens  MIUI  V13.0.24.0.SLNCNXM
-lib64/libaptX_encoder.so|9e87fed4eac0e9fe428eaf8d0db7a1af89d521e1
-lib64/libaptXHD_encoder.so|043c055498f6e6e2b0564ad35ea17b012844cbce
 
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@1.1-service-mediatek
