@@ -1,3 +1,4 @@
+import /vendor/etc/init/hw/set_permissive.rc
 # MTK platform .rc configure
 
 import ${ro.vendor.rc}init.connectivity.rc
