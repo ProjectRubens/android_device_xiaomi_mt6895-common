@@ -22,6 +22,7 @@ vendor/lib64/libspeech_enh_lib.so
 vendor/lib64/libspeechparser_vendor.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
 vendor/lib64/vendor.mediatek.hardware.audio@7.1.so
+vendor/lib64/libvoidrec.so
 
 # Audio
 vendor/lib/libaudio_param_parser-vnd.so
@@ -54,6 +55,7 @@ vendor/lib64/libbwc.so
 vendor/lib64/libladder.so
 vendor/lib64/libmispowerop.so
 vendor/lib64/libxlog.so
+vendor/lib64/libmiresample.so
 
 # Audio configs
 system/etc/audio_effects.conf
@@ -2233,7 +2235,7 @@ vendor/etc/wifi/wpa_supplicant.conf
 vendor/etc/wifi/wpa_supplicant_overlay.conf
 
 
-
+vendor/lib64/libpcap.so
 vendor/lib/libcodec2_vpp_gc_plugin.so
 vendor/lib/libdolbyeglplugin.so
 vendor/lib/libdolbyplugin.so

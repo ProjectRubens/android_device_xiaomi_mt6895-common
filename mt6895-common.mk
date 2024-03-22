@@ -202,7 +202,8 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib64/libkeymaster4.so|libshim_libkeymaster4.so \
     /system/lib64/libcameraservice.so|libshim_libcameraservice.so \
     /system_ext/lib64/libsink.so|libshim_vtservice.so \
-    /system/lib64/libsink.so|libshim_vtservice.so
+    /system/lib64/libsink.so|libshim_vtservice.so \
+    system_ext/lib64/libcamera_algoup_jni.xiaomi.so|libshim_libcameraservice.so
 
 
 
