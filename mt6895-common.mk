@@ -101,7 +101,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.device@3.6.vendor \
     android.hardware.camera.provider@2.4.vendor \
     android.hardware.camera.provider@2.5.vendor \
-    android.hardware.camera.provider@2.6.vendor \
+    android.hardware.camera.provider@2.6.vendor
 
 # Config store
 PRODUCT_PACKAGES += \
@@ -205,7 +205,8 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib64/libsink.so|libshim_vtservice.so \
     system_ext/lib64/libcamera_algoup_jni.xiaomi.so|libshim_libcameraservice.so
 
-
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilts/libshim_libkeymaster4.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libshim_libkeymaster4.so
 
 # Lights
 PRODUCT_PACKAGES += \
