@@ -428,7 +428,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     wpa_supplicant \
     hostapd \
-    android.hardware.wifi-service
+    android.hardware.wifi-service \
+    libwifi-hal-wrapper
 
 PRODUCT_PACKAGES += \
     android.hardware.tetheroffload.config@1.0.vendor:64 \
@@ -438,9 +439,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libkeystore-engine-wifi-hidl:64 \
     libkeystore-wifi-hidl:64
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/vendor_hals/vendor_hals.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/vendor_hals/vendor_hals.xml
 
 # USB
 PRODUCT_PACKAGES += \
