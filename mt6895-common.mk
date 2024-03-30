@@ -183,8 +183,18 @@ PRODUCT_BOOT_JARS += \
 
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
-    
+    $(LOCAL_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-common.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-common.jar \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-framework.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-framework.jar \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-ims-base.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-ims-base.jar \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-ims-common.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-ims-common.jar \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-ims-extension-plugin.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-ims-extension-plugin.jar \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-telecom-common.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-telecom-common.jar \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-telephony-base.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-telephony-base.jar \
+    $(LOCAL_PATH)/prebuilts/framework/mediatek-telephony-common.jar:$(TARGET_COPY_OUT_SYSTEM_EXT)/framework/mediatek-telephony-common.jar \
+
+
+
 # Shims
 PRODUCT_PACKAGES += \
     libshim_vtservice \
