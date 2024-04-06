@@ -131,6 +131,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fastbootd
 
+# Filesystem
+PRODUCT_PACKAGES += \
+    linker \
+    resize2fs \
+    tune2fs
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1.vendor
