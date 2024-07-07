@@ -149,33 +149,26 @@ PRODUCT_PACKAGES += \
 
 # Gnss
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@2.1.vendor \
+    android.hardware.gnss.measurement_corrections@1.1.vendor \
     android.hardware.gnss.visibility_control@1.0.vendor \
-    android.hardware.gnss.measurement_corrections@1.1.vendor
-
-# GPU ondemand governor
-PRODUCT_PACKAGES += \
-    ondemand_gpu.sh
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/ondemand_mtk:$(TARGET_COPY_OUT_VENDOR)/bin/ondemand_mtk
+    android.hardware.gnss@1.1.vendor \
+    android.hardware.gnss@2.1.vendor \
+    android.hardware.gnss-V1-ndk_platform.vendor
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-impl.recovery \
-    android.hardware.health@2.1-service
+    android.hardware.health-service.mediatek \
+    android.hardware.health-service.mediatek-recovery
 
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0.vendor
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.allocator@1.0 \
-    android.hidl.base@1.0 \
-    android.hidl.manager@1.0 \
-    android.hidl.memory.block@1.0.vendor \
-    libhidltransport \
     libhidltransport.vendor \
-    libhwbinder \
+    libhidltransport \
     libhwbinder.vendor \
+    libhwbinder \
+    android.hidl.allocator@1.0.vendor
 
 # IMS
 PRODUCT_BOOT_JARS += \
@@ -232,6 +225,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     local_time.default
 
+# Media
+PRODUCT_PACKAGES += \
+    libcodec2_hidl@1.1.vendor \
+    libcodec2_hidl@1.2.vendor \
+    libavservices_minijail_vendor \
+    libstagefright_softomx_plugin.vendor \
+    libsfplugin_ccodec_utils.vendor \
+    libcodec2_soft_common.vendor
+
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/seccomp,$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy) \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media,$(TARGET_COPY_OUT_VENDOR)/etc)
+
 # MIUI Camera
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-miuicamera.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-miuicamera.xml
@@ -265,15 +271,12 @@ PRODUCT_PACKAGES += \
     Tag
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay
-
 PRODUCT_PACKAGES += \
-    FrameworkResOverlay \
-    NotchBarKiller \
-    SystemUIOverlay \
-    TetheringConfigOverlay \
-    WifiOverlay
+    CarrierConfigOverlayMT6895 \
+    FrameworksResOverlayMT6895 \
+    TelephonyOverlayMT6895 \
+    TetheringResOverlayMT6895 \
+    WifiResOverlayMT6895
 
 # Protobuf
 PRODUCT_PACKAGES += \
@@ -343,6 +346,10 @@ PRODUCT_PACKAGES += \
     PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/power/powerscntbl.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerscntbl.xml
 
+# Power-off Alarm
+#PRODUCT_PACKAGES += \
+#    PowerOffAlarm
+
 # Recovery
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/init.recovery.mt6895.rc:recovery/root/init.recovery.mt6895.rc
@@ -355,7 +362,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.6.vendor \
     android.hardware.radio.config@1.3.vendor \
-    android.hardware.secure_element@1.2.vendor
+
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/rsc,$(TARGET_COPY_OUT_VENDOR)/etc/rsc)
+
 
 # Rootdir
 PRODUCT_PACKAGES += \
@@ -389,6 +399,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.mt6895:recovery/root/first_stage_ramdisk/fstab.mt6895
 
+# Secure Element
+PRODUCT_PACKAGES += \
+    android.hardware.secure_element@1.2.vendor \
+    libchrome.vendor
+
 # Sensor
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
@@ -409,6 +424,9 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sysconfig/hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/hiddenapi-package-whitelist.xml
 
+# TEE
+BOARD_TEE_VARIANT ?= beanpod
+
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0.vendor
@@ -418,7 +436,6 @@ PRODUCT_PACKAGES += \
     vndservice \
     vndservicemanager
 
-# VNDK
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-core/libbinder.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libbinder-v32.so \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so \
@@ -432,14 +449,14 @@ PRODUCT_PACKAGES += \
     libwifi-hal-wrapper
 
 PRODUCT_PACKAGES += \
-    android.hardware.tetheroffload.config@1.0.vendor:64 \
-    android.hardware.tetheroffload.control@1.0.vendor:64 \
-    android.hardware.tetheroffload.control@1.1.vendor:64
+    android.hardware.tetheroffload.config@1.0.vendor \
+    android.hardware.tetheroffload.control@1.0.vendor \
+    android.hardware.tetheroffload.control@1.1.vendor
 
-PRODUCT_PACKAGES += \
-    libkeystore-engine-wifi-hidl:64 \
-    libkeystore-wifi-hidl:64
 
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
+    
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.3.vendor \

@@ -191,7 +191,7 @@ vendor/lib/vendor.mediatek.hardware.mmagent@1.0.so
 vendor/lib/vendor.mediatek.hardware.pq@2.0.so
 vendor/lib64/hw/mt6895/android.hardware.camera.provider@2.6-impl-mediatek.so
 vendor/lib64/hw/mt6895/vendor.mediatek.hardware.camera.atms@1.0-impl.so
-vendor/lib64/vendor.mediatek.hardware.camera.atms-V1-ndk.so
+system_ext/lib64/vendor.mediatek.hardware.camera.atms-V1-ndk.so
 vendor/lib64/hw/mt6895/vendor.mediatek.hardware.camera.bgservice@1.1-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.camera.isphal@1.1-impl.so
 vendor/lib64/lib3a.ae.pipe.so
@@ -766,10 +766,6 @@ vendor/etc/vintf/manifest/manifest_vendor.dolby.hardware.dms.xml
 vendor/lib/libdapparamstorage.so
 vendor/lib/libdeccfg.so
 vendor/lib/vendor.dolby.hardware.dms@2.0.so
-/vendor/lib/libdolbyplugin.so
-/vendor/lib/libdolbyeglplugin.so
-/vendor/lib64/libdolbyplugin.so
-/vendor/lib64/libdolbyeglplugin.so
 vendor/lib64/libdapparamstorage.so
 vendor/lib64/libdeccfg.so
 vendor/lib64/libdlbdsservice.so
@@ -1090,6 +1086,29 @@ system_ext/priv-app/ImsService/ImsService.apk:system/priv-app/ImsService/ImsServ
 system_ext/bin/vtservice
 system_ext/etc/init/init.vtservice.rc
 system_ext/framework/mediatek-ims-extension-plugin.jar:system/framework/mediatek-ims-extension-plugin.jar
+system_ext/lib/libmtk_vt_wrapper.so
+system_ext/lib/libmtkperf_client.so
+system_ext/lib/libsysenv_system.so
+system_ext/lib/libvcodec_cap.so
+system_ext/lib/libvcodec_capenc.so
+system_ext/lib64/libcomutils.so
+system_ext/lib64/libimsma.so
+system_ext/lib64/libimsma_adapt.so
+system_ext/lib64/libimsma_rtp.so
+system_ext/lib64/libimsma_socketwrapper.so
+system_ext/lib64/libmtk_vt_service.so
+system_ext/lib64/libmtk_vt_wrapper.so
+system_ext/lib64/libmtkperf_client.so
+system_ext/lib64/libsignal.so
+system_ext/lib64/libsink.so
+system_ext/lib64/libsource.so
+system_ext/lib64/libsysenv_system.so
+system_ext/lib64/libvcodec_cap.so
+system_ext/lib64/libvcodec_capenc.so
+system_ext/lib64/libvt_avsync.so
+system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so:system/lib/vendor.mediatek.hardware.videotelephony@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so:system/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so:system/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so
 system_ext/lib/libmtk_vt_wrapper.so:system/lib/libmtk_vt_wrapper.so
 system_ext/lib/libmtkperf_client.so:system/lib/libmtkperf_client.so
 system_ext/lib/libsysenv_system.so:system/lib/libsysenv_system.so
@@ -1110,9 +1129,11 @@ system_ext/lib64/libsysenv_system.so:system/lib64/libsysenv_system.so
 system_ext/lib64/libvcodec_cap.so:system/lib64/libvcodec_cap.so
 system_ext/lib64/libvcodec_capenc.so:system/lib64/libvcodec_capenc.so
 system_ext/lib64/libvt_avsync.so:system/lib64/libvt_avsync.so
-system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so:system/lib/vendor.mediatek.hardware.videotelephony@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so:system/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so:system/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so
+system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so
+
+
 
 # Media (Codec2)
 vendor/bin/hw/android.hardware.media.c2@1.2-mediatek
@@ -1120,6 +1141,7 @@ vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b
 vendor/etc/init/android.hardware.media.c2@1.2-mediatek-64b.rc
 vendor/etc/vintf/manifest/manifest_media_c2_V1_1_default.xml
 vendor/lib/libavservices_minijail_vendor.so
+system_ext/lib64/vendor.mediatek.hardware.camera.atms-V1-ndk.so
 vendor/lib/libcodec2_hidl@1.1.so
 vendor/lib/libcodec2_hidl@1.2.so
 vendor/lib/libcodec2_hidl_plugin.so
@@ -1149,6 +1171,9 @@ vendor/lib64/libsfplugin_ccodec_utils.so
 vendor/lib64/libstagefright_bufferpool@2.0.1.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.15.so
 vendor/lib/libdolbyeglplugin.so
+vendor/lib/libdolbyplugin.so
+vendor/lib64/libdolbyeglplugin.so
+vendor/lib64/libdolbyplugin.so
 
 # Media (OMX)
 etc/seccomp_policy/mediacodec.policy
@@ -2088,25 +2113,60 @@ vendor/lib64/vendor.mediatek.hardware.power@1.1.so
 vendor/lib64/vendor.mediatek.hardware.power@2.0.so
 
 # Radio
-system_ext/lib/vendor.mediatek.hardware.mtkradioex@3.0.so
-system_ext/lib64/vendor.mediatek.hardware.mtkradioex@3.0.so
+vendor/bin/ccci_mdinit
+vendor/bin/ccci_rpcd
 vendor/bin/hw/mtkfusionrild
-vendor/lib/libmtkcutils.so
-vendor/lib/libmtkhardware_legacy.so
-vendor/lib/libmtkproperty.so
-vendor/lib/libmtkrillog.so
-vendor/lib/libsysenv.so
+vendor/etc/ecc_list.xml
+vendor/etc/ecc_list_OP01.xml
+vendor/etc/ecc_list_OP02.xml
+vendor/etc/ecc_list_OP09.xml
+vendor/etc/ecc_list_OP12.xml
+vendor/etc/ecc_list_OP17.xml
+vendor/etc/ecc_list_OP18.xml
+vendor/etc/ecc_list_OP20.xml
+vendor/etc/ecc_list_OP236.xml
+vendor/etc/ecc_list_preference.xml
+vendor/etc/init/init.cccimdinit.rc
+vendor/etc/init/init.cccirpcd.rc
+vendor/etc/init/mtkrild.rc
+vendor/etc/init/muxreport.rc
+vendor/etc/special_pws_channel.xml
+vendor/etc/vendor-apns-conf.xml
+vendor/etc/virtual-spn-conf-by-efgid1.xml
+vendor/etc/virtual-spn-conf-by-efpnn.xml
+vendor/etc/virtual-spn-conf-by-efspn.xml
+vendor/etc/virtual-spn-conf-by-imsi.xml
+vendor/lib64/libcares_naptr.so
+vendor/lib64/libcarrierconfig.so
+vendor/lib64/libccci_util.so
+vendor/lib64/libgwsdv2-ril.so
+vendor/lib64/libgwsdv3-ril.so
+vendor/lib64/libmipc.so
+vendor/lib64/libmnetlink_v104.so
+vendor/lib64/libmtk-fusion-ril-prop-vsim.so
+vendor/lib64/libmtk-ril.so
+vendor/lib64/libmtkares.so
 vendor/lib64/libmtkconfig.so
 vendor/lib64/libmtkconfigutils.so
 vendor/lib64/libmtkcutils.so
 vendor/lib64/libmtkhardware_legacy.so
+vendor/lib64/libmtkmipc-ril.so
+vendor/lib64/libmtknetcap.so
+vendor/lib64/libmtknetutils.so
 vendor/lib64/libmtkproperty.so
 vendor/lib64/libmtkrillog.so
 vendor/lib64/libmtkrilutils.so
+vendor/lib64/libmtksysutils.so
+vendor/lib64/libmtktinyxml.so
 vendor/lib64/libmtkutils.so
 vendor/lib64/libratconfig.so
 vendor/lib64/librilfusion.so
+vendor/lib64/libstorage_otp.so
 vendor/lib64/libsysenv.so
+vendor/lib64/libtrm.so
+vendor/lib64/libvia-ril.so
+vendor/lib64/libviamipc-ril.so
+vendor/lib64/libwpfa.so
 vendor/lib64/vendor.mediatek.hardware.mtkradioex@2.0.so
 vendor/lib64/vendor.mediatek.hardware.mtkradioex@3.0.so
 
@@ -2127,6 +2187,9 @@ product/etc/apns-conf.xml
 # Secure element
 vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
 vendor/etc/init/android.hardware.secure_element@1.2-service-mediatek.rc
+vendor/lib64/android.hardware.secure_element@1.0.so
+vendor/lib64/android.hardware.secure_element@1.1.so
+vendor/lib64/android.hardware.secure_element@1.2.so
 
 # Sensors
 vendor/bin/hw/android.hardware.sensors@2.0-service.multihal-mediatek
@@ -2200,11 +2263,12 @@ vendor/etc/vintf/manifest/vendor.xiaomi.hardware.vibratorfeature.service.xml
 vendor/lib64/vendor.hardware.vibratorfeature.IVibratorExt-V1-ndk_platform.so
 
 # Wi-Fi
-vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal-mtk.so
-
-# Wi-Fi Configs
-vendor/etc/wifi/p2p_supplicant_overlay.conf
+vendor/bin/wlan_assistant
+vendor/etc/init/wlan_assistant.rc
+vendor/etc/init/init.wlan_drv.rc
 vendor/etc/wifi/passpointProfile.conf
+vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal-mtk.so
+vendor/etc/wifi/p2p_supplicant_overlay.conf
 vendor/etc/wifi/wpa_supplicant.conf
 vendor/etc/wifi/wpa_supplicant_overlay.conf
 
