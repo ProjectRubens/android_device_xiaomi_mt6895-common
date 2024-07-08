@@ -162,6 +162,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.health@1.0.vendor
+
 # HIDL
 PRODUCT_PACKAGES += \
     libhidltransport.vendor \
@@ -452,6 +453,10 @@ PRODUCT_PACKAGES += \
     android.hardware.tetheroffload.config@1.0.vendor \
     android.hardware.tetheroffload.control@1.0.vendor \
     android.hardware.tetheroffload.control@1.1.vendor
+
+PRODUCT_PACKAGES += \
+    libkeystore-engine-wifi-hidl \
+    libkeystore-wifi-hidl
 
 
 PRODUCT_COPY_FILES += \
