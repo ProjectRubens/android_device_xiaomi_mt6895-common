@@ -1,1 +1,0 @@
-void _ZN7android18FrameRenderTracker31checkFencesAndGetRenderedFramesEPKNS0_4InfoEb() {}

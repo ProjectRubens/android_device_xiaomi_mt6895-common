@@ -14,7 +14,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Virtual A/B
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
 PRODUCT_PACKAGES += \
     update_engine \
@@ -64,7 +64,8 @@ PRODUCT_PACKAGES += \
     libreverbwrapper \
     libvisualizer \
     libaudiofoundation.vendor \
-    libtinycompress
+    libtinycompress \
+    libaudioclient
 
 PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.0 \
@@ -83,7 +84,7 @@ PRODUCT_PACKAGES += \
 # Boot control HAL
 PRODUCT_PACKAGES += \
     bootctrl.default \
-    android.hardware.boot-service.default \
+    com.android.hardware.boot \
     android.hardware.boot-service.default_recovery
 
 # CAS
@@ -101,7 +102,17 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.device@3.6.vendor \
     android.hardware.camera.provider@2.4.vendor \
     android.hardware.camera.provider@2.5.vendor \
-    android.hardware.camera.provider@2.6.vendor
+    android.hardware.camera.provider@2.6.vendor \
+    android.frameworks.cameraservice.service@2.0.vendor \
+    android.frameworks.cameraservice.service@2.1.vendor \
+    android.frameworks.cameraservice.service@2.2.vendor \
+    android.frameworks.cameraservice.service@2.0 \
+    android.frameworks.cameraservice.service@2.1 \
+    android.frameworks.cameraservice.service@2.2 \
+    android.frameworks.cameraservice.service-V1-ndk \
+    android.frameworks.cameraservice.service-V1-ndk.vendor \
+    libcamera_metadata.vendor \
+    libpng.vendor
 
 # Config store
 PRODUCT_PACKAGES += \
@@ -121,7 +132,8 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4.vendor
+    android.hardware.drm@1.4.vendor \
+    libutilscallstack.vendor
 
 # Dumpstate
 PRODUCT_PACKAGES += \
@@ -153,7 +165,8 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss.visibility_control@1.0.vendor \
     android.hardware.gnss@1.1.vendor \
     android.hardware.gnss@2.1.vendor \
-    android.hardware.gnss-V1-ndk_platform.vendor
+    android.hardware.gnss-V1-ndk_platform.vendor \
+    android.hardware.gnss-V1-ndk.vendor
 
 # Health
 PRODUCT_PACKAGES += \
@@ -197,26 +210,28 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libshim_vtservice \
-    libshim_libstagefright \
-    libshim_libcameraservice \
-    libshim_libkeymaster4
+    libshim_mt6895
 
 TARGET_LD_SHIM_LIBS := \
-    /system/lib/libstagefright.so|libshim_libstagefright.so \
-    /system/lib/libkeymaster4.so|libshim_libkeymaster4.so \
-    /vendor/lib/libkeymaster4.so|libshim_libkeymaster4.so \
-    /vendor/lib64/libkeymaster4.so|libshim_libkeymaster4.so \
-    /system/lib/libcameraservice.so|libshim_libcameraservice.so \
-    /system/lib64/libstagefright.so|libshim_libstagefright.so \
-    /system/lib64/libkeymaster4.so|libshim_libkeymaster4.so \
-    /system/lib64/libcameraservice.so|libshim_libcameraservice.so \
-    /system_ext/lib64/libsink.so|libshim_vtservice.so \
-    /system/lib64/libsink.so|libshim_vtservice.so \
-    system_ext/lib64/libcamera_algoup_jni.xiaomi.so|libshim_libcameraservice.so
+    /system/lib/libstagefright.so|libshim_mt6895.so \
+    /system/lib/libkeymaster4.so|libshim_mt6895.so \
+    /vendor/lib/libkeymaster4.so|libshim_mt6895.so \
+    /vendor/lib64/libkeymaster4.so|libshim_mt6895.so \
+    /system/lib/libcameraservice.so|libshim_mt6895.so \
+    /system/lib64/libstagefright.so|libshim_mt6895.so \
+    /system/lib64/libkeymaster4.so|libshim_mt6895.so \
+    /system/lib64/libcameraservice.so|libshim_mt6895.so \
+    /system_ext/lib64/libsink.so|libshim_mt6895.so \
+    /system/lib64/libsink.so|libshim_mt6895.so \
+    /system_ext/lib64/libcamera_algoup_jni.xiaomi.so|libshim_mt6895.so \
+    /system/lib64/libandroid_runtime.so|libshim_mt6895.so \
+    /system/bin/cameraserver|libshim_mt6895.so \
+    /vendor/lib/libstagefright_softomx.so|libshim_mt6895.so \
+    /vendor/lib64/libcodec2_hidl@1.1.so|libshim_mt6895.so \
+    /vendor/lib64/hw/vendor.xiaomi.sensor.citsensorservice@1.1-impl.so|libshim_mt6895.so
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/libshim_libkeymaster4.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libshim_libkeymaster4.so
+    $(LOCAL_PATH)/prebuilts/libshim_mt6895.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libshim_mt6895.so
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -233,7 +248,10 @@ PRODUCT_PACKAGES += \
     libavservices_minijail_vendor \
     libstagefright_softomx_plugin.vendor \
     libsfplugin_ccodec_utils.vendor \
-    libcodec2_soft_common.vendor
+    libcodec2_soft_common.vendor \
+    libstagefright_foundation-v33
+
+
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/seccomp,$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy) \
@@ -435,7 +453,13 @@ PRODUCT_PACKAGES += \
 # Vendor service
 PRODUCT_PACKAGES += \
     vndservice \
-    vndservicemanager
+    vndservicemanager \
+    libexpat.vendor \
+    libsqlite.vendor \
+    libcurl.vendor \
+    libdumpstateutil.vendor \
+    libjsoncpp.vendor \
+    libnetutils.vendor
 
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-core/libbinder.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libbinder-v32.so \
