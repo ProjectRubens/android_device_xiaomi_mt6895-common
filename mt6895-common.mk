@@ -65,7 +65,8 @@ PRODUCT_PACKAGES += \
     libvisualizer \
     libaudiofoundation.vendor \
     libtinycompress \
-    libaudioclient
+    libaudioclient \
+    libaudioclient.vendor
 
 PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.0 \
@@ -100,9 +101,18 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.device@3.4.vendor \
     android.hardware.camera.device@3.5.vendor \
     android.hardware.camera.device@3.6.vendor \
+    android.hardware.camera.common@1.0 \
+    android.hardware.camera.device@3.2 \
+    android.hardware.camera.device@3.3 \
+    android.hardware.camera.device@3.4 \
+    android.hardware.camera.device@3.5 \
+    android.hardware.camera.device@3.6 \
     android.hardware.camera.provider@2.4.vendor \
     android.hardware.camera.provider@2.5.vendor \
     android.hardware.camera.provider@2.6.vendor \
+    android.hardware.camera.provider@2.4 \
+    android.hardware.camera.provider@2.5 \
+    android.hardware.camera.provider@2.6 \
     android.frameworks.cameraservice.service@2.0.vendor \
     android.frameworks.cameraservice.service@2.1.vendor \
     android.frameworks.cameraservice.service@2.2.vendor \
@@ -231,7 +241,8 @@ TARGET_LD_SHIM_LIBS := \
     /vendor/lib64/hw/vendor.xiaomi.sensor.citsensorservice@1.1-impl.so|libshim_mt6895.so
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/libshim_mt6895.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libshim_mt6895.so
+    $(LOCAL_PATH)/prebuilts/libshim_mt6895.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libshim_mt6895.so \
+    $(LOCAL_PATH)/prebuilts/libshim_mt6895.so:$(TARGET_COPY_OUT_VENDOR)/lib/libshim_mt6895.so
 
 # Lights
 PRODUCT_PACKAGES += \
