@@ -41,7 +41,7 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Audio
-PRODUCT_PACKAGES += 
+PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl \
     android.hardware.audio@7.1-impl \
     android.hardware.audio.effect@7.0-impl \
