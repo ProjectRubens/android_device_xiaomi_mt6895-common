@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2024 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -41,40 +41,44 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Audio
-PRODUCT_PACKAGES += \
-    android.hardware.audio.common@6.0-util \
-    android.hardware.audio.common@7.0-util \
-    android.hardware.audio.effect@6.0-util \
-    android.hardware.audio.effect@6.0-impl \
+PRODUCT_PACKAGES += 
     android.hardware.audio@6.0-impl \
     android.hardware.audio@7.1-impl \
-    android.hardware.audio@7.1-util \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.soundtrigger@2.3-impl \
+    android.hardware.audio.service
+
+PRODUCT_PACKAGES += \
+    audio.primary.default \
     audio.bluetooth.default \
-    audio.r_submix.default \
     audio.usb.default \
-    audio_policy.stub \
+    android.hardware.bluetooth.audio-impl
+
+PRODUCT_PACKAGES += \
+    MtkInCallService
+
+PRODUCT_PACKAGES += \
+    libaudiofoundation.vendor \
     libaudiopreprocessing \
+    libbluetooth_audio_session \
     libbundlewrapper \
+    libalsautils \
     libdownmix \
     libdynproc \
     libeffectproxy \
+    libhapticgenerator \
     libldnhncr \
+    libnbaio_mono \
     libreverbwrapper \
-    libvisualizer \
-    libaudiofoundation.vendor \
     libtinycompress \
-    libaudioclient \
-    libaudioclient.vendor
+    libvisualizer
 
-PRODUCT_PACKAGES += \
-    android.hardware.soundtrigger@2.0 \
-    android.hardware.soundtrigger@2.1 \
-    android.hardware.soundtrigger@2.2
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.a2dp_offload.disabled=true
+PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -95,29 +99,12 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.common@1.0.vendor \
-    android.hardware.camera.device@3.2.vendor \
-    android.hardware.camera.device@3.3.vendor \
-    android.hardware.camera.device@3.4.vendor \
-    android.hardware.camera.device@3.5.vendor \
-    android.hardware.camera.device@3.6.vendor \
     android.hardware.camera.common@1.0 \
-    android.hardware.camera.device@3.2 \
-    android.hardware.camera.device@3.3 \
-    android.hardware.camera.device@3.4 \
-    android.hardware.camera.device@3.5 \
     android.hardware.camera.device@3.6 \
-    android.hardware.camera.provider@2.4.vendor \
-    android.hardware.camera.provider@2.5.vendor \
-    android.hardware.camera.provider@2.6.vendor \
-    android.hardware.camera.provider@2.4 \
-    android.hardware.camera.provider@2.5 \
-    android.hardware.camera.provider@2.6 \
-    android.frameworks.cameraservice.service@2.0.vendor \
-    android.frameworks.cameraservice.service@2.1.vendor \
+    android.hardware.camera.device@3.6.vendor \
+    android.hardware.camera.provider@2.7.vendor \
+    android.hardware.camera.provider@2.7 \
     android.frameworks.cameraservice.service@2.2.vendor \
-    android.frameworks.cameraservice.service@2.0 \
-    android.frameworks.cameraservice.service@2.1 \
     android.frameworks.cameraservice.service@2.2 \
     android.frameworks.cameraservice.service-V1-ndk \
     android.frameworks.cameraservice.service-V1-ndk.vendor \
@@ -130,13 +117,12 @@ PRODUCT_PACKAGES += \
 
 # ConsumerIr
 PRODUCT_PACKAGES += \
-    android.hardware.ir@1.0-service \
-    android.hardware.ir@1.0-impl
+    android.hardware.ir-service.example
 
 # Display
 PRODUCT_PACKAGES += \
-    android.frameworks.displayservice@1.0.vendor \
-    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.composer@2.3-service \
+    android.hardware.memtrack-service.mediatek-mali \
     libdrm.vendor \
     libvulkan
 
@@ -161,7 +147,11 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1.vendor
+    android.hardware.biometrics.fingerprint@2.3-service.xiaomi
+
+
+PRODUCT_PACKAGES += \
+    vendor.xiaomi.hardware.fx.tunnel@1.0.vendor
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -220,29 +210,24 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libshim_mt6895
+    libshim_sink
 
-TARGET_LD_SHIM_LIBS := \
-    /system/lib/libstagefright.so|libshim_mt6895.so \
-    /system/lib/libkeymaster4.so|libshim_mt6895.so \
-    /vendor/lib/libkeymaster4.so|libshim_mt6895.so \
-    /vendor/lib64/libkeymaster4.so|libshim_mt6895.so \
-    /system/lib/libcameraservice.so|libshim_mt6895.so \
-    /system/lib64/libstagefright.so|libshim_mt6895.so \
-    /system/lib64/libkeymaster4.so|libshim_mt6895.so \
-    /system/lib64/libcameraservice.so|libshim_mt6895.so \
-    /system_ext/lib64/libsink.so|libshim_mt6895.so \
-    /system/lib64/libsink.so|libshim_mt6895.so \
-    /system_ext/lib64/libcamera_algoup_jni.xiaomi.so|libshim_mt6895.so \
-    /system/lib64/libandroid_runtime.so|libshim_mt6895.so \
-    /system/bin/cameraserver|libshim_mt6895.so \
-    /vendor/lib/libstagefright_softomx.so|libshim_mt6895.so \
-    /vendor/lib64/libcodec2_hidl@1.1.so|libshim_mt6895.so \
-    /vendor/lib64/hw/vendor.xiaomi.sensor.citsensorservice@1.1-impl.so|libshim_mt6895.so
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/libshim_mt6895.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libshim_mt6895.so \
-    $(LOCAL_PATH)/prebuilts/libshim_mt6895.so:$(TARGET_COPY_OUT_VENDOR)/lib/libshim_mt6895.so
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0.vendor \
+    libkeymaster_messages.vendor \
+    libkeymaster_portable.vendor
+
+# Keymint
+PRODUCT_PACKAGES += \
+    android.hardware.security.keymint-V1-ndk_platform.vendor \
+    android.hardware.security.secureclock-V1-ndk_platform.vendor \
+    android.hardware.security.sharedsecret-V1-ndk_platform.vendor \
+    android.hardware.security.rkp-V1-ndk.vendor \
+    lib_android_keymaster_keymint_utils.vendor \
+    libkeymint.vendor
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -262,7 +247,9 @@ PRODUCT_PACKAGES += \
     libcodec2_soft_common.vendor \
     libstagefright_foundation-v33
 
-
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/seccomp,$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy) \
@@ -436,10 +423,10 @@ PRODUCT_PACKAGES += \
 
 # Sensor
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.0-ScopedWakelock.vendor \
     android.frameworks.sensorservice@1.0.vendor \
-    android.hardware.sensors@2.1.vendor \
-    android.frameworks.sensorservice@1.0
+    android.hardware.sensors@2.1-service.xiaomi-multihal \
+    libsensorndkbridge \
+    libshim_sensors
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 31
@@ -447,8 +434,11 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-   hardware/mediatek \
-   hardware/xiaomi
+    hardware/google/pixel \
+    hardware/google/interfaces \
+    hardware/mediatek \
+    hardware/xiaomi \
+    hardware/lineage/interfaces/power-libperfmgr
 
 # Sysconfig
 PRODUCT_COPY_FILES += \
@@ -457,9 +447,11 @@ PRODUCT_COPY_FILES += \
 # TEE
 BOARD_TEE_VARIANT ?= beanpod
 
-# Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0.vendor
+    android.hardware.thermal-service.mediatek
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
 # Vendor service
 PRODUCT_PACKAGES += \
@@ -470,12 +462,16 @@ PRODUCT_PACKAGES += \
     libcurl.vendor \
     libdumpstateutil.vendor \
     libjsoncpp.vendor \
-    libnetutils.vendor
+    libnetutils.vendor \
+    libutils-v32
 
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-core/libbinder.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libbinder-v32.so \
-    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
+
+# Vendor service manager
+PRODUCT_PACKAGES += \
+    vndservicemanager
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
@@ -492,7 +488,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libkeystore-engine-wifi-hidl \
     libkeystore-wifi-hidl
-
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)

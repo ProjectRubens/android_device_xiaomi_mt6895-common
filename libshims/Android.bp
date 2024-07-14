@@ -13,24 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-cc_library_shared {
-    name: "libshim_mt6895",
-    srcs: ["libshim_mt6895.cpp"],
-    shared_libs: [
-        "libaudioclient",
-        "libgui",
-        "libstagefright",
-        "libutils",
-        "libcameraservice",
-        "libkeymaster4",
-        "libstagefright_softomx",
-    ],
-    header_libs: [
-        "libaudioclient_headers",
-        "libmedia_headers",
-        "libmediametrics_headers",
-        ]
-}
+
 
 cc_library_shared {
     name: "libshim_sensors",
@@ -44,4 +27,17 @@ cc_library_shared {
     ],
     compile_multilib: "64",
     vendor: true
+}
+
+cc_library_shared {
+    name: "libshim_sink",
+    srcs: ["libshim_sink.cpp"],
+    compile_multilib: "64",
+    shared_libs: [
+        "libaudioclient",
+    ],
+    header_libs: [
+        "libaudioclient_headers",
+        "libmedia_headers",
+    ],
 }

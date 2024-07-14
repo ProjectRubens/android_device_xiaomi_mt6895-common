@@ -8,10 +8,12 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.media.c2</name>
-        <version>1.2</version>
+        <version>1.0-2</version>
         <interface>
             <name>IComponentStore</name>
-            <instance>dolby</instance>
+            <regex-instance>default[0-9]*</regex-instance>
+            <regex-instance>dolby[0-9]*</regex-instance>
+            <regex-instance>vendor[0-9]*_software</regex-instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -1047,7 +1049,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.mtdservice</name>
-        <version>1.3</version>
+        <version>1.0-3</version>
         <interface>
             <name>IMTService</name>
             <instance>default</instance>
